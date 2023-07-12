@@ -1,0 +1,172 @@
+@font-face {
+    font-family: "space";
+    src: url(./connect-four-game/starter-code/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf);
+}
+
+* {
+    font-family: space;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0;
+    background-color: #7945FF;
+    overflow: hidden;
+}
+
+.site-content{
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+/*--header------------------*/
+.header-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 35px;
+}
+
+.logo {}
+
+.header-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    border: none;
+    color: white;
+    height: 39px;
+    width: 108px;
+    padding: 10px;
+    background-color: #5C2DD5;
+}
+
+.menu-button {}
+
+.restart-button {}
+
+/*--player score?---------*/
+
+.players-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0px;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.player-box-cnt {
+    display: flex;
+    align-items: center;
+}
+
+.player-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 81px;
+    width: 142px;
+    border-radius: 20px;
+    border: solid black 2px;
+    box-shadow: 0px 9px black;
+    font-weight: bold;
+}
+
+.player-icon {
+    height: 60px;
+}
+
+.player1-icon {
+    position: relative;
+    left: 20px;
+}
+
+.player2-icon {
+    position: relative;
+    right: 20px;
+}
+
+.score {
+    display: block;
+    font-size: 40px;
+}
+
+/*--board-------------------------------------*/
+
+.board-cnt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.white-board {
+    position: relative;
+    bottom: 320px;
+}
+
+.black-board {}
+
+/*--shade board----------------------------------------*/
+.shade-border {
+    background-color: #5C2DD5;
+    position: relative;
+    border-radius: 60px;
+    bottom: 309px;
+    width: 100%;
+    height: 348px;
+}
+
+/*--player-timer----------------------------------*/
+
+.player-timer-cnt{
+    position: relative;
+    bottom: 833px;
+}
+
+.png-score {
+    position: relative;
+    bottom: 683px;
+    width: 240px;
+    /* left: 107px; */
+    /* position: absolute;
+  top: 97%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+.yellow-box-score{
+    display: flex;
+    justify-content: center;
+}
+
+.player-turn{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.players-turn-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.time-left{
+    font-weight: bold;
+    font-size: 60px;
+    position: relative;
+    left: 9px;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect4</title>
+    <link rel="shortcut icon" href="./images/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+    <div class="site-content">
+
+        <div class="header-cnt">
+            <button class="menu-button header-button">MENU</button>
+            <img class="logo" src="./images/logo.svg" alt="logo">
+            <button class="restart-button header-button">RESTART</button>
+        </div>
+        <div class="players-cnt">
+        <div class="player-box-cnt">
+            <img class="player1-icon player-icon" src="./images/player-one.svg" alt="player-2pic">
+            <div class="player-box">
+                <span class="player-name">PLAYER 1</span>
+                <span class="score">0</span>
+            </div>
+        </div>
+        <div class="player-box-cnt">
+            <div class="player-box">
+                <span class="player-name">PLAYER 2</span>
+                <span class="score">0</span>
+            </div>
+            <img class="player2-icon player-icon" src="./images/player-two.svg" alt="player-2pic">
+        </div>
+    </div>
+    <div class="board-cnt">
+        <img class="black-board" data-board src="./images/board-layer-black-small.svg" alt="connectFour board">
+        <img class="white-board" data-board src="./images/board-layer-white-small.svg" alt="connectFour board">
+        <div class="chip-cnt"></div>
+    </div>
+    <div class="shade-border"><span></span></div>
+    <div class="yellow-box-score">
+        <img class="png-score" src="./images/Group 11.png" alt="">
+    </div>
+    <div class="player-timer-cnt">
+        <div class="players-turn-cnt">
+            <span class="player-turn">PLAYERS 2'S TURN</span>
+            <span class="time-left">25s</span>
+        </div>
+    </div>
+</div>
+
+<script src="./script.js"></script>
+</body>
+
+</html>
