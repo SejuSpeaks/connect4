@@ -22,6 +22,10 @@ body{
     background-color: #7945FF;
 }
 
+a{
+    text-decoration: none;
+}
+
 .logo{
     height: 52px;
     width: 52px;
