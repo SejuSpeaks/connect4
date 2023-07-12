@@ -21,7 +21,7 @@ body {
 
 .site-content{
     max-height: 100vh;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 /*--header------------------*/
