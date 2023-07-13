@@ -113,9 +113,48 @@ body {
 .white-board {
     position: relative;
     bottom: 320px;
+    z-index: 3;
 }
 
-.black-board {}
+.black-board {
+    z-index: 0;
+}
+
+.column-cnt{
+    display: flex;
+    flex-direction: row;
+    gap: 37px;
+    height: 260px;
+    /* background-color: black; */
+    position: absolute;
+    top: 289px;
+    z-index: 4;
+}
+
+.column > span {
+    visibility: hidden;
+}
+
+.column > img {
+    z-index: 2;
+    position: absolute;
+    top: 222px;
+    /* top: 29px; */
+}
+
+.column{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.chip-cnt{
+    position: absolute;
+    /* top: 28px; */
+    display: flex;
+    flex-direction: column-reverse;
+
+}
 
 /*--shade board----------------------------------------*/
 .shade-border {
