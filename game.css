@@ -19,7 +19,7 @@ body {
     overflow: hidden;
 }
 
-.site-content{
+.site-content {
     max-height: 100vh;
     /* overflow-y: auto; */
 }
@@ -120,7 +120,7 @@ body {
     z-index: 0;
 }
 
-.column-cnt{
+.column-cnt {
     display: flex;
     flex-direction: row;
     gap: 37px;
@@ -131,24 +131,24 @@ body {
     z-index: 4;
 }
 
-.column > span {
+.column>span {
     visibility: hidden;
 }
 
-.column > img {
+.column>img {
     z-index: 2;
     position: absolute;
     top: 222px;
     /* top: 29px; */
 }
 
-.column{
+.column {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
 }
 
-.chip-cnt{
+.chip-cnt {
     position: absolute;
     /* top: 28px; */
     display: flex;
@@ -162,20 +162,20 @@ body {
     position: relative;
     border-radius: 60px;
     bottom: 309px;
-    width: 100%;
+    width: 104%;
     height: 348px;
 }
 
 /*--player-timer----------------------------------*/
 
-.player-timer-cnt{
+.player-timer-cnt {
     position: relative;
     bottom: 833px;
 }
 
 .png-score {
     position: relative;
-    bottom: 683px;
+    bottom: 660px;
     width: 240px;
     /* left: 107px; */
     /* position: absolute;
@@ -184,12 +184,12 @@ body {
   transform: translate(-50%, -50%); */
 }
 
-.yellow-box-score{
+.yellow-box-score {
     display: flex;
     justify-content: center;
 }
 
-.player-turn{
+.player-turn {
     font-weight: bold;
     font-size: 20px;
 }
@@ -197,15 +197,53 @@ body {
 
 .players-turn-cnt {
     display: flex;
+    position: relative;
+    top: 20px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 10px;
 }
 
-.time-left{
+.time-left {
     font-weight: bold;
     font-size: 60px;
     position: relative;
     left: 9px;
+}
+
+/*--player win--------------------------------------------------*/
+
+.wins{
+    font-size: 60px;
+    font-weight: bold;
+}
+
+
+.player1-win {
+    visibility: hidden;
+    position: absolute;
+    z-index: 4;
+    left: 66px;
+    bottom: 164px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 285px;
+    height: 160px;
+    border: solid black 2px;
+    box-shadow: 0px 7px black;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.player1-win > button{
+    background-color:#7945FF;
+    border-radius: 20px;
+    width: 130px;
+    height: 39px;
+    color: white;
+    border: none;
 }

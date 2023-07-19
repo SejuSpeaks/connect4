@@ -68,8 +68,8 @@
             <img class="black-board" data-board src="./images/board-layer-black-small.svg" alt="connectFour board">
             <img class="white-board" data-board src="./images/board-layer-white-small.svg" alt="connectFour board">
         </div>
-        <div class="shade-border"><span></span></div>
-        <div class="yellow-box-score">
+        <div class="shade-border" data-background><span></span></div>
+        <div class="yellow-box-score" data-boxScore>
             <img class="png-score" src="./images/Group 11.png" alt="">
         </div>
         <div class="player-timer-cnt">
@@ -79,6 +79,13 @@
             </div>
         </div>
     </div>
+
+    <div class="player1-win" data-playerWin>
+        <span data-winner>PLAYER 1</span>
+        <span class="wins">WINS</span>
+        <button data-playAgain>PLAY AGAIN</button>
+    </div>
+    <div class="player2-win"></div>
 
     <script src="./script.js"></script>
 </body>

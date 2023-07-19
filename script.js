@@ -7,25 +7,45 @@ class Gamboard {
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0, 0, 0]
+            [0, 0, 0, 0, 0, 0, 0]
         ];
 
         this.playerTurn = 'player1';
     }
 
+    changePlayer(player = this.playerTurn){
+        if(player === 'player1'){
+            console.log('player1')
+            boxscore.style.backgroundColor = '#FD6687'; //change picture instead
+        }
+        else {
+            console.log('player2');
+        }
+    }
+
     dropChip(chosenColumn = undefined) {
+        this.changePlayer();
         //if (chosenColumn === 0){
         for (let i = this.board.length - 1; i >= 0; i--) {
             if (this.board[i][chosenColumn] === 0) {
-                //append chip to row before so i -1
-                // console.log('no go');
-                // console.log(this.board[i][chosenColumn])
-                this.board[i][chosenColumn] = 1;
-                this.makeChip(i, chosenColumn, "red");
-                console.log('chip dropped');
-                break;
 
+                if (this.playerTurn === 'player1') {
+                    this.board[i][chosenColumn] = 1;
+                    this.makeChip(i, chosenColumn, "red");
+                    //console.log(this.board[i]);
+                    this.checkWin(this.board, [i, chosenColumn], 1);
+                    this.playerTurn = 'player2';
+                    break;
+                }
+                else {
+                    this.board[i][chosenColumn] = 2;
+                    this.makeChip(i, chosenColumn, "red");
+                    this.checkWin(this.board, [i, chosenColumn], 2);
+                    this.playerTurn = 'player1';
+                    break;
+                }
             }
+
         }
         //}
     }
@@ -38,102 +58,317 @@ class Gamboard {
         yellowChip.src = './images/counter-yellow-small.svg';
 
 
-        if(column === 0){
-            if(this.playerTurn === 'player1'){
+        if (column === 0) {
+            if (this.playerTurn === 'player1') {
                 chip0.appendChild(redChip);
-                this.playerTurn = 'player2';
             }
-            else{
+            else {
                 chip0.appendChild(yellowChip)
-                this.playerTurn = 'player1'
+
             }
         }
 
         if (column === 1) {
-            if(this.playerTurn === 'player1'){
+            if (this.playerTurn === 'player1') {
                 chip1.appendChild(redChip);
-                this.playerTurn = 'player2';
+
             }
-            else{
+            else {
                 chip1.appendChild(yellowChip)
-                this.playerTurn = 'player1'
+
             }
         }
 
-        if(column === 2){
-            if(this.playerTurn === 'player1'){
+        if (column === 2) {
+            if (this.playerTurn === 'player1') {
                 chip2.appendChild(redChip);
-                this.playerTurn = 'player2';
+
             }
-            else{
+            else {
                 chip2.appendChild(yellowChip)
-                this.playerTurn = 'player1'
             }
         }
 
         if (column === 3) {
-            if(this.playerTurn === 'player1'){
+            if (this.playerTurn === 'player1') {
                 chip3.appendChild(redChip);
-                this.playerTurn = 'player2';
             }
-            else{
+            else {
                 chip3.appendChild(yellowChip)
-                this.playerTurn = 'player1'
+
             }
         }
 
         if (column === 4) {
-            if(this.playerTurn === 'player1'){
+            if (this.playerTurn === 'player1') {
                 chip4.appendChild(redChip);
-                this.playerTurn = 'player2';
+
             }
-            else{
+            else {
                 chip4.appendChild(yellowChip)
-                this.playerTurn = 'player1'
+
             }
         }
 
         if (column === 5) {
-            if(this.playerTurn === 'player1'){
+            if (this.playerTurn === 'player1') {
                 chip5.appendChild(redChip);
-                this.playerTurn = 'player2';
+
             }
-            else{
+            else {
                 chip5.appendChild(yellowChip)
-                this.playerTurn = 'player1'
+
             }
         }
 
         if (column === 6) {
-            if(this.playerTurn === 'player1'){
+            if (this.playerTurn === 'player1') {
                 chip6.appendChild(redChip);
-                this.playerTurn = 'player2';
+
             }
-            else{
+            else {
                 chip6.appendChild(yellowChip)
-                this.playerTurn = 'player1'
+
             }
         }
 
-        // const positionTop = (5 - row) * 44; // Adjust the top position based on the row
-        // const positionLeft = column * 37; // Adjust the left position based on the column
-        // chipEl.style.top = `${positionTop}px`;
-        // chipEl.style.left = `${positionLeft}px`;
+    }
 
-        // // Get the column element based on the column index
-        // const columnElement = document.querySelector(`[data-column${column + 1}]`);
-        // columnElement.appendChild(chipEl); // Append the chip to the column
+    //matrix traversal check if there is a win
+    //from the node thats provided('the chip coor')
+    //check if there is a win 'four in a row'
+    checkWin(gameBoard, node, currentPlayer) {
+        const directions = [
+            [0, 1],     // horizontal
+            [1, 0],     // vertical
+            [1, 1],     // diagonal /
+            [-1, 1],    // diagonal \
+        ];
+
+        const [row, col] = node;
+
+        for (const direction of directions) {
+            const [deltaRow, deltaCol] = direction;
+            let count = 1; // Initialize count to 1 (since the current node is included)
+
+            // Check for winning condition in one direction
+            for (let i = 1; i <= 3; i++) {
+                const newRow = row + i * deltaRow;
+                const newCol = col + i * deltaCol;
+
+                if (
+                    newRow >= 0 &&
+                    newRow < gameBoard.length &&
+                    newCol >= 0 &&
+                    newCol < gameBoard[newRow].length &&
+                    gameBoard[newRow][newCol] === currentPlayer
+                ) {
+                    count++;
+                } else {
+                    break; // Stop counting if the consecutive chips in the direction end
+                }
+            }
+
+            // Check for winning condition in the opposite direction
+            for (let i = 1; i <= 3; i++) {
+                const newRow = row - i * deltaRow;
+                const newCol = col - i * deltaCol;
+
+                if (
+                    newRow >= 0 &&
+                    newRow < gameBoard.length &&
+                    newCol >= 0 &&
+                    newCol < gameBoard[newRow].length &&
+                    gameBoard[newRow][newCol] === currentPlayer
+                ) {
+                    count++;
+                } else {
+                    break; // Stop counting if the consecutive chips in the direction end
+                }
+            }
+
+            if (count >= 4) {
+                console.log('YOU WON!!');
+                this.win();
+                return; // Exit the function if a win is found
+            }
+        }
+    }
+
+    // checkWin(gameBoard = this.board, node, currentPlayer = this.playerTurn) {
+    //     let row = node[0];
+    //     let col = node[1];
+    //     const path = [node];
+    //     const queue = [node];
+    //     const visited = new Set();
+    //     visited.add(`${row},${col}`);
+    //     console.log(visited);
+
+    //     while (queue.length) {
+    //         const currentNode = queue.shift();
+    //         let currRow = currentNode[0];
+    //         let currCol = currentNode[1];
+
+    //         const currentNeighbors = this.neighbors(gameBoard, currentNode, currentPlayer);
+
+    //         for (let neighbor of currentNeighbors) {
+    //             if (!visited.has(`${neighbor}`)) {
+    //                 queue.push(neighbor);
+    //                 visited.add(`${neighbor}`);
+    //                 path.push(neighbor);
+    //             }
+    //         }
+    //     }
+    //     console.log('current path', path);
+    //     this.checkPathWin(path);
+    //     if (path.length === 4) console.log('YOU WON!!'); //this is the line
+    // }
+
+    // checkPathWin(path){
+    //     // let node = path[path.length - 1];
+    //     //check from end of path
+    //     console.log('path begining', path);
+    //     const firstNode = path[path.length - 1];
+    //     const diagnolLeftWin = [firstNode];
+    //     const diagnolRightWin = [firstNode];
+
+    //     for(let i = path.length - 1; i <= 0; i--){
+    //         let node = path[i];
+    //         let prevNode = path[i-1];
+    //         let row = prevNode[0];
+    //         let col = prevNode[1];
+
+    //         if([row - 1, col + 1] === node) diagnolRightWin.push(node);
+    //         if (`${row + 1},${col - 1}` === `${node}`){
+    //             diagnolLeftWin.push(node);
+    //             console.log('booba!');
+    //         }
+
+    //     }
+
+    //     // const diagnolRightWin = [
+    //     //     [row - 1, col + 1],
+    //     //     [row - 1, col + 1],
+    //     //     [row - 1, col + 1],
+    //     //     [row - 1, col + 1]
+    //     // ];
+
+
+    //     // const straightUpWin = [
+    //     //     [row - 1 ,col],
+    //     //     [row - 1 ,col],
+    //     //     [row - 1 ,col],
+    //     //     [row - 1 ,col]
+    //     // ];
+
+    //     // const straightDownWin = [
+    //     //     [row + 1, col],
+    //     //     [row + 1, col],
+    //     //     [row + 1, col],
+    //     //     [row + 1, col]
+    //     // ];
+    //     if (diagnolRightWin.length === 4) console.log('buddy,..fuck me');
+    //     console.log(diagnolLeftWin, 'diag WIN BUDDY');
+    //     if(diagnolLeftWin.length === 4) console.log('buddy you just won a million dollars');
+    // }
+
+    //if its player 1 then we check for ones in the matrix
+    //if player 2 then we check for 2's in the matrix
+    neighbors(board, node, currentPlayer) {
+        let row = node[0];
+        let col = node[1];
+        const path = [];
+
+        const directions = [
+            [row - 1, col], // up
+            [row + 1, col], //down
+            [row, col + 1], //right
+            [row, col - 1], //left
+            [row - 1, col + 1], // up right
+            [row - 1, col - 1], //up left
+            [row + 1, col + 1], //down right
+            [row + 1, col - 1] // down left
+        ];
+
+        for (let direction of directions) {
+            let dRow = direction[0];
+            let dCol = direction[1];
+            if (
+                dRow >= 0 &&
+                dRow < board.length &&
+                dCol >= 0 &&
+                dCol < board[dRow].length &&
+                board[dRow][dCol] === currentPlayer
+            ) {
+                path.push(direction);
+            };
+        }
+
+        return path;
 
     }
 
 
-    switchPlayer() {
+    win(player = this.playerTurn) {
+        console.log(`${player} won`)
+
+        if(player === 'player1'){
+            background.style.backgroundColor = '#FD6687';
+        }
+        else{
+            background.style.backgroundColor = '#FFCE67';
+        }
+        playerWin.style.visibility = 'visible';
+        boxscore.style.visibility = 'hidden';
+    }
+
+
+    reset() {
+        while(chip0.firstChild){
+            chip0.removeChild(chip0.firstChild);
+        }
+
+        while(chip1.firstChild){
+            chip1.removeChild(chip1.firstChild);
+        }
+
+        while(chip2.firstChild){
+            chip2.removeChild(chip2.firstChild);
+        }
+
+        while(chip3.firstChild){
+            chip3.removeChild(chip3.firstChild);
+        }
+
+        while(chip4.firstChild){
+            chip4.removeChild(chip4.firstChild);
+        }
+
+        while(chip5.firstChild){
+            chip5.removeChild(chip5.firstChild);
+        }
+
+        while(chip6.firstChild){
+            chip6.removeChild(chip6.firstChild);
+        }
+
+
+        this.board = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]
+        ];
+
+        playerWin.style.visibility = 'hidden';
+        boxscore.style.visibility = 'visible';
+        background.style.backgroundColor = '#5C2DD5'
+
 
     }
 
-    win() {
-
-    }
 
     lose() {
 
@@ -149,6 +384,10 @@ class Gamboard {
 
 
 const board = document.querySelectorAll("[data-board]");
+const background = document.querySelector('[data-background]');
+const playerWin = document.querySelector('[data-playerWin]');
+const boxscore = document.querySelector('[data-boxScore]');
+const playAgain = document.querySelector('[data-playAgain]');
 const chip0 = document.querySelector("[data-chip]");
 const chip1 = document.querySelector("[data-chip2]");
 const chip2 = document.querySelector("[data-chip3]");
@@ -210,6 +449,13 @@ board.forEach(hole => {
         console.log('you clicked my board hooray!')
     })
 });
+
+playAgain.addEventListener('click', () => {
+    //reset board
+    console.log('reset worked');
+    newGame.reset();
+
+})
 
 
 
